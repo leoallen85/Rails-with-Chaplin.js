@@ -33,7 +33,9 @@ group :development, :test do
   gem 'debugger'
 end
 
-gem 'unicorn'
+group :production do
+  gem 'unicorn'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
