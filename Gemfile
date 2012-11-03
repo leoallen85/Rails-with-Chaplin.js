@@ -29,13 +29,14 @@ gem 'jquery-rails'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
+group :development, :test do
+  gem 'thin'
 
-gem 'thin'
+  # To use debugger
+  gem 'debugger'
+end
 
 # Deploy with Capistrano
 # gem 'capistrano'
-
-# To use debugger
-gem 'debugger'
 
 gem 'grape'
