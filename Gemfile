@@ -33,6 +33,8 @@ group :development, :test do
   gem 'debugger'
 end
 
+gem 'unicorn'
+
 # Deploy with Capistrano
 # gem 'capistrano'
 
