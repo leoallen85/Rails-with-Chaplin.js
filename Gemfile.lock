@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:pitchinvasion/requirejs-rails.git
+  remote: git://github.com/pitchinvasion/requirejs-rails.git
   revision: f2e7fd3b8ab62d7ca3d6761842856be8b27c68dd
   specs:
     requirejs-rails (0.9.0)
