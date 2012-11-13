@@ -9,7 +9,7 @@ require.config
         # Core Libraries
         # modernizr: "libs/modernizr"
         # jquery: "libs/jquery"
-        underscore: "lodash"
+        # underscore: "lodash"
         # backbone: "libs/backbone"
         "backbone.validateAll": "plugins/Backbone.validateAll"
         # Handlebars: "libs/Handlebars"

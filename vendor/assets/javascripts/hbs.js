@@ -11,7 +11,7 @@
 define: false, process: false, window: false */  
 define([
 //>>excludeStart('excludeHbs', pragmas.excludeHbs)
-'Handlebars', './hbs/underscore', './hbs/i18nprecompile', './hbs/json2'
+'Handlebars', 'underscore', './hbs/i18nprecompile', './hbs/json2'
 //>>excludeEnd('excludeHbs')
 ], function (
 //>>excludeStart('excludeHbs', pragmas.excludeHbs)
@@ -30,8 +30,8 @@ define([
         customNameExtension = "@hbs",
         devStyleDirectory = "/demo/styles/",
         buildStyleDirectory = "/demo-build/styles/",
-        helperDirectory = "template/helpers/",
-        i18nDirectory = "template/i18n/",
+        helperDirectory = "templates/helpers/",
+        i18nDirectory = "templates/i18n/",
         buildCSSFileName = "screen.build.css";
 
     if (typeof window !== "undefined" && window.navigator && window.document && !window.navigator.userAgent.match(/Node.js/)) {
@@ -133,7 +133,7 @@ define([
           //>>excludeStart('excludeHbs', pragmas.excludeHbs)
 
             var compiledName = name + customNameExtension,
-                disableI18n = (config.hbs && config.hbs.disableI18n),
+                disableI18n =true, //force disabling of i18n for time being
                 partialDeps = [];
 
             function recursiveNodeSearch( statements, res ) {
