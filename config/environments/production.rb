@@ -14,7 +14,7 @@ Yoga::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
 
-l  config.assets.compile = true
+  config.assets.compile = true
 
   # Generate digests for assets URLs
   config.assets.digest = true
