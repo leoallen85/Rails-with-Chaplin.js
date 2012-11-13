@@ -1,3 +1,5 @@
+#### #= require_tree ./templates
+
 # Sets the require.js configuration for your application.
 require.config
 
@@ -5,14 +7,13 @@ require.config
     paths:
         
         # Core Libraries
-        modernizr: "libs/modernizr"
-        jquery: "libs/jquery"
-        underscore: "libs/lodash"
-        backbone: "libs/backbone"
+        # modernizr: "libs/modernizr"
+        # jquery: "libs/jquery"
+        underscore: "lodash"
+        # backbone: "libs/backbone"
         "backbone.validateAll": "plugins/Backbone.validateAll"
-        hbs: "libs/hbs"
-        Handlebars: "libs/Handlebars"
-        templates: "../templates"
+        # Handlebars: "libs/Handlebars"
+        # templates: "../templates"
 
   
     # Sets the configuration for your third party scripts that are not AMD compatible
@@ -40,9 +41,13 @@ require.config
         # won't work as well.
         disableI18n: true
 
+    urlArgs: "bust=" +  (new Date()).getTime()
 
-# Include Desktop Specific JavaScript files here (or inside of your Desktop router)
-require ["modernizr", "jquery", "backbone", "router", "backbone.validateAll"], (Modernizr, $, Backbone, Router) ->
+# Bootstrap the application
+require [
+  'hello_world_application'
+], (HelloWorldApplication) ->
+  'use strict'
 
-    # Instantiates a new Router
-    @router = new Router()
+  app = new HelloWorldApplication()
+  app.initialize()
