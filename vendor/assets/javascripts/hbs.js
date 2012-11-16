@@ -9,7 +9,7 @@
 /*jslint evil: true, strict: false, plusplus: false, regexp: false */
 /*global require: false, XMLHttpRequest: false, ActiveXObject: false,
 define: false, process: false, window: false */  
-define([
+require([
 //>>excludeStart('excludeHbs', pragmas.excludeHbs)
 'Handlebars', 'underscore', './hbs/i18nprecompile', './hbs/json2'
 //>>excludeEnd('excludeHbs')
