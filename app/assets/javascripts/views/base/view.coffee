@@ -1,8 +1,7 @@
 define [
-  'handlebars'
   'chaplin'
   'lib/view_helper' # Just load the view helpers, no return value
-], (Handlebars, Chaplin) ->
+], (Chaplin) ->
   'use strict'
 
   class View extends Chaplin.View
