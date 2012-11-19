@@ -7,6 +7,4 @@ define [
   class View extends Chaplin.View
 
     getTemplateFunction: ->
-      console.debug @template
-      #@template = Handlebars.compile(@template)
       @template

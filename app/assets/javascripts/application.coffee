@@ -48,9 +48,9 @@ if environment == "development"
 
 # Bootstrap the application
 require [
-  'hello_world_application'
-], (HelloWorldApplication) ->
+  'yoga'
+], (YogaApplication) ->
   'use strict'
 
-  app = new HelloWorldApplication()
+  app = new YogaApplication()
   app.initialize()

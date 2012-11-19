@@ -1,12 +1,10 @@
 define [
   'views/base/view',
-  'hbs!templates/hello_world'
+  'hbs!templates/login'
 ], (View, template) ->
   'use strict'
-  
-  console.debug "#page"
 
-  class HelloWorldView extends View
+  class LoginView extends View
 
     template: template
 
@@ -14,5 +12,7 @@ define [
 
     # Automatically append to the DOM on render
     container: '#page'
+    containerMethod: "html"
+    
     # Automatically render after initialize
     autoRender: true

@@ -7,15 +7,14 @@ define [
 
   # The application object
   # Choose a meaningful name for your application
-  class HelloWorldApplication extends Chaplin.Application
+  class YogaApplication extends Chaplin.Application
 
     # Set your application name here so the document title is set to
     # “Controller title – Site title” (see Layout#adjustTitle)
-    title: 'Chaplin Example Application'
+    title: 'London Fields Yoga'
 
     initialize: ->
       super
-      #console.debug 'HelloWorldApplication#initialize'
 
       # Initialize core components
       @initDispatcher()
