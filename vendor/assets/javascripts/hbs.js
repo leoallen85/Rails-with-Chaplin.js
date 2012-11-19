@@ -1,5 +1,5 @@
 /**
- * @license handlebars hbs 0.2.1 - Alex Sexton, but Handlebars has it's own licensing junk
+ * @license handlebars hbs 0.4.0 - Alex Sexton, but Handlebars has it's own licensing junk
  *
  * Available via the MIT or new BSD license.
  * see: http://github.com/jrburke/require-cs for details on the plugin this was based off of
@@ -8,10 +8,10 @@
 /* Yes, deliciously evil. */
 /*jslint evil: true, strict: false, plusplus: false, regexp: false */
 /*global require: false, XMLHttpRequest: false, ActiveXObject: false,
-define: false, process: false, window: false */  
-require([
+define: false, process: false, window: false */
+define([
 //>>excludeStart('excludeHbs', pragmas.excludeHbs)
-'Handlebars', 'underscore', './hbs/i18nprecompile', './hbs/json2'
+'handlebars', 'underscore', 'hbs/i18nprecompile', 'hbs/json2'
 //>>excludeEnd('excludeHbs')
 ], function (
 //>>excludeStart('excludeHbs', pragmas.excludeHbs)
@@ -28,10 +28,10 @@ require([
         filecode = "w+",
         templateExtension = "hbs",
         customNameExtension = "@hbs",
-        devStyleDirectory = "/demo/styles/",
+        devStyleDirectory = "/styles/",
         buildStyleDirectory = "/demo-build/styles/",
-        helperDirectory = "templates/helpers/",
-        i18nDirectory = "templates/i18n/",
+        helperDirectory = "template/helpers/",
+        i18nDirectory = "template/i18n/",
         buildCSSFileName = "screen.build.css";
 
     if (typeof window !== "undefined" && window.navigator && window.document && !window.navigator.userAgent.match(/Node.js/)) {
@@ -80,8 +80,11 @@ require([
                !!process.versions.node) {
         //Using special require.nodeRequire, something added by r.js.
         fs = require.nodeRequire('fs');
-        fetchText = function (path, callback) {
-            callback(fs.readFileSync(path, 'utf8'));
+        fetchText = function ( path, callback ) {
+            var body = fs.readFileSync(path, 'utf8') || "";
+            // we need to remove BOM stuff from the file content
+            body = body.replace(/^\uFEFF/, '');
+            callback(body);
         };
     } else if (typeof java !== "undefined" && typeof java.io !== "undefined") {
         fetchText = function(path, callback) {
@@ -127,13 +130,13 @@ require([
             }
         },
 
-        version: '1.0.3beta',
+        version: '0.4.0',
 
         load: function (name, parentRequire, load, config) {
           //>>excludeStart('excludeHbs', pragmas.excludeHbs)
 
             var compiledName = name + customNameExtension,
-                disableI18n =true, //force disabling of i18n for time being
+                disableI18n = (config.hbs && config.hbs.disableI18n),
                 partialDeps = [];
 
             function recursiveNodeSearch( statements, res ) {
@@ -165,7 +168,7 @@ require([
               var statement, res, test;
               if ( nodes && nodes.statements ) {
                 statement = nodes.statements[0];
-                if ( statement.type === "comment" ) {
+                if ( statement && statement.type === "comment" ) {
                   try {
                     res = ( statement.comment ).replace(new RegExp('^[\\s]+|[\\s]+$', 'g'), '');
                     test = JSON.parse(res);
@@ -219,7 +222,7 @@ require([
                     res.push(prefix + statement.id.string);
                   }
 
-                  var paramsWithoutParts = ['this', '.', '..'];
+                  var paramsWithoutParts = ['this', '.', '..', './..', '../..', '../../..'];
 
                   // grab the params
                   if ( statement.params ) {
@@ -249,6 +252,9 @@ require([
                 // if it's a whole new program
                 if ( statement && statement.program && statement.program.statements ) {
                   sideways = recursiveVarSearch([statement.mustache],[], "", helpersres)[0] || "";
+                  if ( statement.program.inverse && statement.program.inverse.statements ) {
+                    recursiveVarSearch( statement.program.inverse.statements, res, prefix + newprefix + (sideways ? (prefix+newprefix) ? "."+sideways : sideways : ""), helpersres);
+                  }
                   recursiveVarSearch( statement.program.statements, res, prefix + newprefix + (sideways ? (prefix+newprefix) ? "."+sideways : sideways : ""), helpersres);
                 }
               });
@@ -256,7 +262,7 @@ require([
             }
 
             // This finds the Helper dependencies since it's soooo similar
-            function getExternalDeps( nodes ) { 
+            function getExternalDeps( nodes ) {
               var res   = [];
               var helpersres = [];
 
@@ -331,7 +337,7 @@ require([
                           _(metaObj.styles).forEach(function (style) {
                             if ( !styleMap[style] ) {
                               linkElem = document.createElement('link');
-                              linkElem.href = config.baseUrl + 'styles/' + style + '.css';
+                              linkElem.href = config.baseUrl + devStyleDirectory + style + '.css';
                               linkElem.media = 'all';
                               linkElem.rel = 'stylesheet';
                               linkElem.type = 'text/css';
@@ -346,7 +352,7 @@ require([
                                 str = _(metaObj.styles).map(function (style) {
                                   if (!styleMap[style]) {
                                     styleMap[style] = true;
-                                    return "@import url("+buildStyleDirectory+style+".css);\n";
+                                    return "@import url("+style+".css);\n";
                                   }
                                   return "";
                                 }).join("\n");
@@ -364,7 +370,7 @@ require([
                     }
                     catch(e){
                       console.log('error injecting styles');
-                    } 
+                    }
                   }
 
                   if ( ! config.isBuild && ! config.serverRender ) {
@@ -380,7 +386,7 @@ require([
                       prec = precompile( text, mapping, { originalKeyFallback: (config.hbs || {}).originalKeyFallback });
 
                   text = "/* START_TEMPLATE */\n" +
-                         "define(['hbs','Handlebars'"+depStr+helpDepStr+"], function( hbs, Handlebars ){ \n" +
+                         "define(['hbs','handlebars'"+depStr+helpDepStr+"], function( hbs, Handlebars ){ \n" +
                            "var t = Handlebars.template(" + prec + ");\n" +
                            "Handlebars.registerPartial('" + name.replace( /\//g , '_') + "', t);\n" +
                            debugProperties +
@@ -409,25 +415,29 @@ require([
 
                   if ( !config.isBuild ) {
                     require( deps, function (){
-                      load.fromText(compiledName, text);
+                      load.fromText(text);
 
                       //Give result to load. Need to wait until the module
                       //is fully parse, which will happen after this
                       //execution.
-                      parentRequire([compiledName], function (value) {
+                      parentRequire([name], function (value) {
                         load(value);
                       });
                     });
                   }
                   else {
-                    load.fromText(compiledName, text);
+                    load.fromText(text);
 
                     //Give result to load. Need to wait until the module
                     //is fully parse, which will happen after this
                     //execution.
-                    parentRequire([compiledName], function (value) {
+                    parentRequire([name], function (value) {
                       load(value);
                     });
+                  }
+
+                  if ( config.removeCombined ) {
+                    fs.unlinkSync(path);
                   }
               });
             }

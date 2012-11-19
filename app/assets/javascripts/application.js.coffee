@@ -28,7 +28,7 @@ require.config
         "backbone.validateAll": ["backbone"]
 
 
-    # Settings for the handlebars implementation
+    # # Settings for the handlebars implementation
     hbs:
 
         # callback to determine path to look for helpers

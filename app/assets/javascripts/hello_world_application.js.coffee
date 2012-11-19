@@ -2,9 +2,6 @@ define [
   'chaplin'
   'views/layout'
   'routes'
-  # Require base controllers manually because
-  # they aren’t compiled individually
-  'controllers/hello_world_controller'
 ], (Chaplin, Layout, routes) ->
   'use strict'
 
@@ -18,7 +15,7 @@ define [
 
     initialize: ->
       super
-      console.debug 'HelloWorldApplication#initialize'
+      #console.debug 'HelloWorldApplication#initialize'
 
       # Initialize core components
       @initDispatcher()
