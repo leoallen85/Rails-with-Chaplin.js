@@ -9,4 +9,5 @@ define [
 
     getTemplateFunction: ->
       console.debug @template
-      @template = Handlebars.compile(@template)
+      #@template = Handlebars.compile(@template)
+      @template

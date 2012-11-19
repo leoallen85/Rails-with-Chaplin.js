@@ -136,7 +136,7 @@ define([
           //>>excludeStart('excludeHbs', pragmas.excludeHbs)
 
             var compiledName = name + customNameExtension,
-                disableI18n = (config.hbs && config.hbs.disableI18n),
+                disableI18n = true || (config.hbs && config.hbs.disableI18n),
                 partialDeps = [];
 
             function recursiveNodeSearch( statements, res ) {
