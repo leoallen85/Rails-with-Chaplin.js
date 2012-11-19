@@ -1,6 +1,6 @@
 define [
   'views/base/view',
-  'hbs!templates/hello_world'
+  'text!templates/hello_world.hbs'
 ], (View, template) ->
   'use strict'
   

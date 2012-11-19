@@ -29,17 +29,17 @@ require.config
 
 
     # # Settings for the handlebars implementation
-    hbs:
+    # hbs:
 
-        # callback to determine path to look for helpers
-        helperPathCallback: (name) ->
-            "helpers/all"
+    #     # callback to determine path to look for helpers
+    #     helperPathCallback: (name) ->
+    #         "helpers/all"
 
-        templateExtension: "hbs"
+    #     templateExtension: "hbs"
 
-        # if disableI18n is `true` it won't load locales and the i18n helper
-        # won't work as well.
-        disableI18n: true
+    #     # if disableI18n is `true` it won't load locales and the i18n helper
+    #     # won't work as well.
+    #     disableI18n: true
 
     urlArgs: "bust=" +  (new Date()).getTime()
 
