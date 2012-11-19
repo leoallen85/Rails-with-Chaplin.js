@@ -45,8 +45,8 @@ require.config
 
 # Bootstrap the application
 require [
-  'jquery'
-], ($) ->
+  'underscore'
+], (_) ->
   'use strict'
 
   alert('hi')
