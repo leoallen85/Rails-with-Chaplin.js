@@ -3,7 +3,7 @@
 # Sets the require.js configuration for your application.
 require.config
 
-    # 3rd party script alias names (Easier to type "jquery" than "libs/jquery-1.7.2.min")
+#     # 3rd party script alias names (Easier to type "jquery" than "libs/jquery-1.7.2.min")
     paths:
         
         # Core Libraries
@@ -17,36 +17,38 @@ require.config
 
   
     # Sets the configuration for your third party scripts that are not AMD compatible
-    shim:
+    # This has been moved to config.yml so it works with r.js
+    # shim:
 
-        # Twitter Bootstrap jQuery plugins
-        backbone:
-            deps: ["underscore", "jquery"]
-            exports: "Backbone" #attaches "Backbone" to the window object
+    #     # Twitter Bootstrap jQuery plugins
+    #     backbone:
+    #         deps: ["underscore", "jquery"]
+    #         exports: "Backbone" #attaches "Backbone" to the window object
 
-        # Backbone.validateAll depends on Backbone.
-        "backbone.validateAll": ["backbone"]
+    #     # Backbone.validateAll depends on Backbone.
+    #     "backbone.validateAll": ["backbone"]
 
 
     # # Settings for the handlebars implementation
-    # hbs:
+    hbs:
 
-    #     # callback to determine path to look for helpers
-    #     helperPathCallback: (name) ->
-    #         "helpers/all"
+        # callback to determine path to look for helpers
+        helperPathCallback: (name) ->
+            "helpers/all"
 
-    #     templateExtension: "hbs"
+        templateExtension: "hbs"
 
-    #     # if disableI18n is `true` it won't load locales and the i18n helper
-    #     # won't work as well.
-    #     disableI18n: true
+        # if disableI18n is `true` it won't load locales and the i18n helper
+        # won't work as well.
+        disableI18n: true
 
     urlArgs: "bust=" +  (new Date()).getTime()
 
 # Bootstrap the application
 require [
-  'underscore'
-], (_) ->
+  'hello_world_application'
+], (HelloWorldApplication) ->
   'use strict'
 
-  alert('hi')
+  app = new HelloWorldApplication()
+  app.initialize()
