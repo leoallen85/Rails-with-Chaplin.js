@@ -17,7 +17,10 @@
   <!-- Mobile viewport optimized: h5bp.com/viewport -->
   <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, width=device-width"> 
   <!-- Allow scalling use -->
-  <!-- <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width"> --> 
+  <!-- <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, width=device-width"> -->
+  <script type="text/javascript">
+    var environment = "<%= Rails.env %>";
+  </script>
 
   <%= stylesheet_link_tag   "application" %>
   <%= requirejs_include_tag "application" %>
