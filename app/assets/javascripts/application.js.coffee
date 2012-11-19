@@ -45,9 +45,8 @@ require.config
 
 # Bootstrap the application
 require [
-  'hello_world_application'
-], (HelloWorldApplication) ->
+  'jquery'
+], ($) ->
   'use strict'
 
-  app = new HelloWorldApplication()
-  app.initialize()
+  alert('hi')
