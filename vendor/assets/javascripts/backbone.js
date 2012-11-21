@@ -973,7 +973,7 @@
       var match = loc.href.match(/#(.*)$/);
       return match ? match[1] : '';
     },
-
+ 
     // Get the cross-browser normalized URL fragment, either from the URL,
     // the hash, or the override.
     getFragment: function(fragment, forcePushState) {

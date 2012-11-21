@@ -1,16 +1,18 @@
 define [
-  'chaplin'
+  'controllers/base/controller'
   'models/user'
   'views/login_view'
-], (Chaplin, User, LoginView) ->
+], (Controller, User, LoginView) ->
   'use strict'
 
-  class SessionsController extends Chaplin.Controller
+  class SessionsController extends Controller
 
     title: 'Login'
 
+    loginRequired: false
+
     historyURL: (params) ->
-      ''
+      'login'
 
     create: (params) ->
       @user = new User()

@@ -5,4 +5,6 @@ define ->
   # `match` is match method of the Router
   (match) ->
 
-    match '', 'sessions#create'
+    match '', 'classes#show'
+    match 'login', 'sessions#create'
+    match 'classes', 'classes#show'
