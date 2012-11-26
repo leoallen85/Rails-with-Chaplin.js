@@ -2,7 +2,8 @@ Yoga::Application.routes.draw do
 
   root :to => "home#index"
 
-  #mount Twitter::API => "/api"
+  require_dependency 'yoga/api'
+  mount Yoga::API => "/"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

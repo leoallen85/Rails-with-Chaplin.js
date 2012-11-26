@@ -55,5 +55,8 @@ module Yoga
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+   # config.watchable_dirs['lib/empfehlungsbund_api'] = [:rb]
+    config.autoload_paths << "#{config.root}/lib"
   end
 end
