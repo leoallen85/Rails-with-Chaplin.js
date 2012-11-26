@@ -1,7 +1,0 @@
-LOG:  database system was shut down at 2012-11-03 00:39:36 GMT
-LOG:  database system is ready to accept connections
-LOG:  autovacuum launcher started
-FATAL:  database "leo" does not exist
-ERROR:  role "yoga_dev" does not exist
-STATEMENT:  CREATE DATABASE yoga_development OWNER yoga_dev ENCODING 'utf8';
-	
