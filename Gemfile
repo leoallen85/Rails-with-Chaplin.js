@@ -2,9 +2,6 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.2'
 
-gem 'pg'
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -30,6 +27,13 @@ group :development, :test do
   # To use debugger
   gem 'debugger'
   gem 'pry'
+
+  # use mysql in development as I'm losing patience with postgre on a mac
+  gem 'mysql2'
+end
+
+group :production do
+  gem 'pg'
 end
 
 # OAuth
