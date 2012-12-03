@@ -34,4 +34,7 @@ Yoga::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  # These are required for devise
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 end

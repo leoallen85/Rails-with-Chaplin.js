@@ -1,5 +1,7 @@
 Yoga::Application.routes.draw do
 
+  devise_for :users
+
   root :to => "home#index"
 
   require_dependency 'yoga/api'

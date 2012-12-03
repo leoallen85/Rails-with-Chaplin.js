@@ -32,6 +32,9 @@ group :development, :test do
   gem 'pry'
 end
 
+# OAuth
+gem 'devise'
+
 gem 'thin'
 
 # Deploy with Capistrano
