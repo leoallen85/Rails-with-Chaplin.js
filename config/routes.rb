@@ -1,11 +1,17 @@
 Yoga::Application.routes.draw do
 
+  backbone = "home#index"
+
+  root :to => backbone
+
+  # resources :registrations, :only => [:create]
+ # resources :sessions#, :only => [:create, :destroy]
+
   devise_for :users
 
-  root :to => "home#index"
-
-  require_dependency 'yoga/api'
-  mount Yoga::API => "/"
+  # This is a catch all route, so that anything that doesn't match a rails route will be routed to the home page
+  # this allows backbone to do the majority of the routing
+  match "*page" => backbone
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
