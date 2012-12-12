@@ -26,7 +26,8 @@ gem 'requirejs-rails', :git => "git://github.com/pitchinvasion/requirejs-rails.g
 group :development, :test do
   # To use debugger
   gem 'debugger'
-  gem 'pry'
+  gem 'pry-rails'
+  gem 'awesome_print'
 
   # use mysql in development as I'm losing patience with postgre on a mac
   gem 'mysql2'
