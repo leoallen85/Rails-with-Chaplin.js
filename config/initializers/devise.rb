@@ -197,7 +197,7 @@ Devise.setup do |config|
   # should add them to the navigational formats lists.
   #
   # The "*/*" below is required to match Internet Explorer requests.
-  # config.navigational_formats = ["*/*", :html]
+  config.navigational_formats = [] # set to empty so we always 401 since this is only ever going to be used to secure an API
 
   # The default HTTP method used to sign out a resource. Default is :delete.
   config.sign_out_via = :delete

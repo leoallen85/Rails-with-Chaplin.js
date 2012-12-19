@@ -5,9 +5,8 @@ Yoga::Application.routes.draw do
   root :to => backbone
 
   # resources :registrations, :only => [:create]
- # resources :sessions#, :only => [:create, :destroy]
-
-  devise_for :users
+  #resources :sessions, :only => [:create, :destroy]
+  devise_for :users, :controllers => { :sessions => "sessions" }, :only => :sessions
 
   # This is a catch all route, so that anything that doesn't match a rails route will be routed to the home page
   # this allows backbone to do the majority of the routing
