@@ -6,8 +6,6 @@ class SessionsController < ApiController
     else
       auth_error!
     end
-
-    render :json => { :auth_token => @user.id }
   end
 
   def destroy

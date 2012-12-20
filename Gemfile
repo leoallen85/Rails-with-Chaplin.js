@@ -18,6 +18,9 @@ end
 gem 'jquery-rails'
 gem 'requirejs-rails', :git => "git://github.com/pitchinvasion/requirejs-rails.git"
 
+# JSON template
+gem 'rabl'
+
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
