@@ -4,4 +4,3 @@
 # Examples:
 #
 User.delete_all
-User.create :name => "Elizabeth", :email => "elizabethyoga@live.com", :password => "d0wnwardd0g^"
