@@ -14,13 +14,3 @@ test:
   database: yoga_test
   username: root
   password: root
-
-production:
-  adapter:  postgresql
-  encoding: unicode
-  pool: 5
-  database: d3j26efgcg7qg0
-  username: dhksfygtgbqqrg
-  password: ii45jdhN2rBPMCEeGDoVqecpKS
-  host: ec2-107-20-224-107.compute-1.amazonaws.com
-  port: 5432
